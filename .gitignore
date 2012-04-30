@@ -1,4 +1,11 @@
 *.class
+target
+*.settings
+.classpath
+.swp
+.cache
+.DS_Store*
+.project
 
 # Package Files #
 *.jar

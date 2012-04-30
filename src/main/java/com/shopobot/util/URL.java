@@ -687,19 +687,13 @@ public class URL implements Iterable<URL.Parameter> {
    * For example, if this URL object represents "http://example.com" then
    * calling this method with "/a.html" will return "http://example.com/a.html"
    * 
-   * Warning: be careful not to pass a non-relative url. To prevent this, this
-   * method will throw an IllegalArgumentException if the relativePath provided
-   * contains a ":" character (which is reserved for the scheme (ex: http://)
-   * and should not be used unencoded in a relative path.
+   * Warning: be careful not to pass a non-relative url.
    * 
    * @param relativePath
    * @return A URL object representing the relative path.
    */
   public URL resolveRelative(String relativePath) {
     relativePath = relativePath.trim();
-    if (relativePath.contains(":")) {
-      throw new IllegalArgumentException(relativePath + " does not appear to be a relative path.");
-    }
     URI baseURI = this.toJavaURI();
     URI resultURI = baseURI.resolve(relativePath);
     URL url = new URL(resultURI.toString());
